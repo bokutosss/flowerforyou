@@ -4,57 +4,110 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Just Because Flower</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600&family=Figtree:wght@400;500;600&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500&family=Nunito:wght@400;600;700&family=Pinyon+Script&display=swap">
 <style>
 :root{
-  --bg:#fbeef1; --surface:#fff6f8; --surface-2:#f7e0e6;
-  --ink:#3a0f1f; --muted:#76505c;
-  --accent-text:#a02a52; --gold:#80601f;
-  --line:rgba(122,26,61,.2); --stage:#f9e3e9;
+  --bg:#fff0f4; --surface:#fff7f9; --surface-2:#ffdfe8;
+  --ink:#4a1a2c; --muted:#7d4f61;
+  --rose:#d13b6b; --on-rose:#ffffff; --accent-text:#b82a5a; --gold:#8a6420;
+  --petal:#ff9fba; --line:rgba(180,40,90,.2); --stage:#ffe0e8;
+  --card-ink:#5a1a30; --card-accent:#b82a5a; --paper:#fffdf9; --paper-ink:#4a1a2a; --rule:rgba(209,59,107,.24);
   --font-display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
   --font-script:'Pinyon Script','Snell Roundhand','Apple Chancery',cursive;
-  --font-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-hand:'Dancing Script','Segoe Script','Bradley Hand',cursive;
+  --font-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#1c0811; --surface:#270c18; --surface-2:#351121;
-    --ink:#fbe6ec; --muted:#d0a6b3;
-    --accent-text:#f59ab5; --gold:#dcb67c;
-    --line:rgba(251,190,205,.2); --stage:#3b1527;
+    --bg:#1f0913; --surface:#2a0e1a; --surface-2:#3a1326;
+    --ink:#ffe8ef; --muted:#d9aebb;
+    --rose:#ff7ba3; --on-rose:#3a0618; --accent-text:#ff9fbd; --gold:#e3bd82;
+    --petal:#e0708f; --line:rgba(255,190,210,.22); --stage:#3f1729;
     color-scheme:dark;
   }
 }
 *{box-sizing:border-box}
+html{scroll-behavior:auto}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--font-body)}
 .wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 :focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
 
-.top{padding-block:1.4rem}
-.brand{font:600 1.05rem/1 var(--font-display);letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font:700 .95rem/1 var(--font-body);padding:.9rem 1.5rem;border-radius:999px;border:2px solid var(--rose);background:var(--rose);color:var(--on-rose);cursor:pointer;text-decoration:none;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--accent-text);border-color:var(--accent-text)}
+.btn.small{padding:.7rem 1.1rem;font-size:.85rem}
 
-.hero{background:radial-gradient(ellipse at 78% 30%,var(--surface-2),transparent 62%),var(--bg)}
+/* hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 78% 30%,var(--surface-2),transparent 62%),var(--bg)}
+.hearts{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.heart{position:absolute;bottom:-30px;fill:var(--petal);opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{transform:translate(0,0) scale(.6);opacity:0}15%{opacity:.75}100%{transform:translate(var(--dx),-90vh) scale(1.1);opacity:0}}
+.hero .wrap{position:relative;z-index:1}
+.top{padding-block:1.4rem}
+.brand{font:600 1.05rem/1 var(--font-display);letter-spacing:.28em;text-transform:uppercase}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:2rem 3rem;align-items:center;padding-block:1rem 4.5rem}
-.eyebrow{margin:0 0 1rem;font:600 .78rem/1 var(--font-body);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.eyebrow{margin:0 0 1rem;font:700 .78rem/1 var(--font-body);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
 h1{margin:0 0 1.4rem;font-weight:400}
 h1 .script{display:block;font:400 clamp(3.7rem,11vw,7.4rem)/.95 var(--font-script);color:var(--accent-text)}
-h1 .shop{display:block;margin-top:.7rem;padding-left:.35rem;font:500 clamp(1rem,2.6vw,1.3rem)/1 var(--font-display);letter-spacing:.7em;text-transform:uppercase;color:var(--gold)}
+h1 .shop{display:block;margin-top:.7rem;padding-left:.35rem;font:500 clamp(1rem,2.6vw,1.3rem)/1 var(--font-display);letter-spacing:.6em;text-transform:uppercase;color:var(--gold)}
 .lede{max-width:34rem;margin:0 0 1.2rem;font:400 clamp(1.25rem,2.6vw,1.55rem)/1.45 var(--font-display)}
-.for{margin:0;color:var(--muted)}
-.for em{font:400 1.7rem/1 var(--font-script);font-style:normal;color:var(--accent-text);padding-left:.2rem}
-.hero-art{margin:0;justify-self:center;width:100%;max-width:420px;background:var(--stage);border-radius:50% 50% 14px 14px / 32% 32% 14px 14px;padding:12% 10% 3%;box-shadow:0 30px 50px -30px rgba(90,15,40,.55);cursor:pointer}
+.for{margin:0 0 2rem;color:var(--muted)}
+.for em{font:400 1.8rem/1 var(--font-script);font-style:normal;color:var(--accent-text);padding-left:.2rem}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem}
+.hero-art{margin:0;justify-self:center;width:100%;max-width:420px;background:var(--stage);border-radius:50% 50% 18px 18px / 32% 32% 18px 18px;padding:12% 10% 3%;box-shadow:0 30px 50px -30px rgba(90,15,40,.55);cursor:pointer}
 .hero-art svg{display:block;width:100%;height:auto}
 
-.band{padding-block:5rem;background:var(--surface)}
+/* bands */
+.band{padding-block:5rem}
+.band.pick-band{background:var(--surface)}
+.band.card-band{background:linear-gradient(var(--surface),var(--surface-2))}
 h2{margin:0 0 .8rem;font:500 clamp(2.1rem,5vw,3.2rem)/1.1 var(--font-display);text-wrap:balance}
+h2 em{font-family:var(--font-script);font-style:normal;font-weight:400;color:var(--accent-text);font-size:1.15em}
 .sec-intro{max-width:36rem;margin:0 0 3rem;color:var(--muted)}
+.center{text-align:center}
+.center .sec-intro{margin-left:auto;margin-right:auto}
+
+/* bouquets */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:2.4rem 1.8rem}
-.card{display:flex;flex-direction:column;min-width:0}
-.stage{display:block;width:100%;border:0;font:inherit;color:inherit;cursor:pointer;background:var(--stage);border-radius:50% 50% 12px 12px / 30% 30% 12px 12px;padding:13% 8% 2%;margin-bottom:1.1rem;transition:transform .35s ease}
+.card{position:relative;display:flex;flex-direction:column;min-width:0}
+.stage{display:block;width:100%;border:0;font:inherit;color:inherit;cursor:pointer;background:var(--stage);border-radius:50% 50% 14px 14px / 30% 30% 14px 14px;padding:13% 8% 2%;margin-bottom:1.1rem;transition:transform .35s ease,box-shadow .35s ease}
 .stage:hover{transform:translateY(-6px)}
 .stage svg{display:block;width:100%;height:auto}
+.card.is-on .stage{box-shadow:0 0 0 4px var(--rose),0 24px 40px -26px rgba(90,15,40,.6)}
+.tag{position:absolute;top:.6rem;left:50%;transform:translateX(-50%);padding:.35rem .8rem;border-radius:999px;background:var(--rose);color:var(--on-rose);font:700 .72rem/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .3s}
+.card.is-on .tag{opacity:1}
 .card h3{margin:0 0 .3rem;font:500 1.7rem/1.1 var(--font-display)}
-.desc{margin:0 0 1rem;color:var(--muted);font-size:.95rem;flex:1}
-.price{font:600 1.25rem/1 var(--font-display);color:var(--gold);letter-spacing:.04em}
+.desc{margin:0;color:var(--muted);font-size:.95rem}
+.status{margin:2rem 0 0;min-height:1.4em;text-align:center;font-size:.92rem;color:var(--accent-text);font-weight:600}
+
+/* greeting card */
+.card-stage{display:grid;place-items:center;margin-top:1rem}
+.gcard{position:relative;width:min(100%,380px);height:560px;perspective:1400px}
+.flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.4,.2,.2,1)}
+.gcard[data-open="true"] .flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;overflow:hidden;box-shadow:0 34px 54px -30px rgba(90,15,40,.7)}
+.front{border:0;padding:1.8rem 1.2rem 1.5rem;cursor:pointer;font:inherit;color:var(--card-ink);display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;background:radial-gradient(circle,rgba(209,59,107,.2) 1.6px,transparent 2px) 0 0/18px 18px,linear-gradient(160deg,#ffe6ed,#ffc6d6)}
+.front::before{content:"";position:absolute;inset:10px;border:2px dashed rgba(184,42,90,.45);border-radius:14px;pointer-events:none}
+.c-top{font:400 2.7rem/1 var(--font-script);color:var(--card-accent)}
+.c-art{display:block;width:76%}
+.c-art svg{display:block;width:100%;height:auto}
+.c-bottom{display:block;font:600 1rem/1.3 var(--font-body)}
+.c-bottom b{display:block;font:400 2rem/1.1 var(--font-script);color:var(--card-accent);font-weight:400}
+.c-bottom small{display:inline-block;margin-top:.5rem;padding:.3rem .8rem;border-radius:999px;background:rgba(255,255,255,.7);font:700 .72rem/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--card-accent)}
+.back{transform:rotateY(180deg);background:var(--paper);color:var(--paper-ink)}
+.inside{position:relative;height:100%;display:flex;flex-direction:column;gap:.5rem;padding:1.5rem 1.3rem 1.2rem 1.7rem}
+.inside::before{content:"";position:absolute;top:0;bottom:0;left:1rem;width:1px;background:rgba(209,59,107,.3)}
+.doodle{position:absolute;top:1rem;right:1rem;width:30px;fill:#d13b6b;opacity:.8}
+.inside input,.inside textarea{font-family:var(--font-hand);color:var(--paper-ink);background:transparent;border:0;border-radius:0;width:100%;outline-offset:4px}
+.inside input{font-size:1.35rem;line-height:2.1rem;border-bottom:1px dashed var(--rule);padding:0}
+.inside .sal{padding-right:2.4rem}
+.msg{--lh:2.1rem;flex:1;min-height:150px;resize:none;display:block;padding:0;font-size:1.3rem;line-height:var(--lh);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px),var(--rule) var(--lh));background-attachment:local}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:.2rem .9rem}
+.sign label{font:700 .64rem/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:#8b5565}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.3rem}
+.inside .btn.ghost{color:#b82a5a;border-color:#b82a5a}
+.copybox{display:block;width:min(100%,380px);margin:1.4rem auto 0;min-height:8rem;padding:.9rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:400 .95rem/1.5 var(--font-body)}
 
 footer{padding-block:2.6rem;border-top:1px solid var(--line);background:var(--bg);text-align:center;color:var(--muted);font-size:.9rem}
 footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-script);color:var(--accent-text)}
@@ -68,7 +121,7 @@ footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-sc
 @keyframes pop{from{transform:scale(0) rotate(-40deg)}to{transform:scale(1) rotate(0)}}
 @keyframes breathe{from{transform:scale(1) rotate(-2deg)}to{transform:scale(1.06) rotate(2deg)}}
 @keyframes sway{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
-@media (prefers-reduced-motion:reduce){.bl,.sp,.sway{animation:none!important}.stage{transition:none}}
+@media (prefers-reduced-motion:reduce){.bl,.sp,.sway,.heart{animation:none!important}.hearts{display:none}.stage,.flip,.btn{transition-duration:.01s}}
 
 @media (max-width:760px){
   .hero-grid{grid-template-columns:minmax(0,1fr);padding-bottom:3.5rem}
@@ -80,14 +133,19 @@ footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-sc
 <body>
 
 <header class="hero">
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
   <div class="wrap">
     <div class="top"><span class="brand">Just Because Flower</span></div>
     <div class="hero-grid">
       <div>
-        <p class="eyebrow">Flowers for no reason</p>
-        <h1><span class="script">Just Because</span><span class="shop">Flower</span></h1>
-        <p class="lede">Flowers for no birthday, no anniversary, no reason at all.</p>
+        <p class="eyebrow">A little something for you</p>
+        <h1><span class="script">Just Because</span><span class="shop">flowers for you</span></h1>
+        <p class="lede">No birthday. No anniversary. Just a bouquet and a few words, because you are on my mind.</p>
         <p class="for">Made with all my love for <em>Bebecakes Cielo</em></p>
+        <div class="cta">
+          <a class="btn" href="#bouquets">Pick your flowers</a>
+          <a class="btn ghost" href="#card">Open your card</a>
+        </div>
       </div>
       <figure class="hero-art go" id="heroArt" role="img" aria-label="A hand-tied bouquet of peonies, roses, tulips and daisies wrapped in soft paper"></figure>
     </div>
@@ -95,11 +153,50 @@ footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-sc
 </header>
 
 <main>
-  <section class="band" aria-labelledby="bq-title">
+  <section class="band pick-band" id="bouquets" aria-labelledby="bq-title">
     <div class="wrap">
-      <h2 id="bq-title">The bouquets</h2>
-      <p class="sec-intro">Four bouquets for the days that need one. Tap a bouquet to watch it bloom again.</p>
+      <h2 id="bq-title">Which flowers feel like <em>you</em> today?</h2>
+      <p class="sec-intro">Tap one to put it on the cover of your card. Tap it again to watch it bloom.</p>
       <div class="grid" id="grid"></div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="band card-band" id="card" aria-labelledby="cd-title">
+    <div class="wrap center">
+      <h2 id="cd-title">A card for <em>you</em></h2>
+      <p class="sec-intro">Tap the card to open it. You can change the words, add your own, and copy the message to send.</p>
+
+      <div class="card-stage">
+        <div class="gcard" id="gcard" data-open="false">
+          <div class="flip">
+            <button class="face front go" id="front" type="button" aria-label="Open the card">
+              <span class="c-top">Just because</span>
+              <span class="c-art" id="coverArt"></span>
+              <span class="c-bottom">For<b>Bebecakes Cielo</b><small>Tap to open</small></span>
+            </button>
+            <div class="face back" id="back" inert>
+              <form class="inside" id="inside" autocomplete="off">
+                <svg class="doodle" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.8 8 3 4.5 6.4 4.5c2 0 3.5 1.1 4.3 2.5l1.3 2 1.3-2c.8-1.4 2.3-2.5 4.3-2.5 3.4 0 5.6 3.5 4 7.2C19.5 16.4 12 21 12 21z"/></svg>
+                <label for="sal" style="position:absolute;left:-9999px">Greeting</label>
+                <input class="sal" id="sal" type="text" maxlength="60">
+                <label for="msg" style="position:absolute;left:-9999px">Your message</label>
+                <textarea class="msg" id="msg" maxlength="900"></textarea>
+                <div class="sign">
+                  <div><label for="close">Closing</label><input id="close" type="text" maxlength="40"></div>
+                  <div><label for="from">From</label><input id="from" type="text" placeholder="Your name" maxlength="40"></div>
+                </div>
+                <div class="actions">
+                  <button class="btn small" id="copyBtn" type="button">Copy message</button>
+                  <button class="btn ghost small" id="closeBtn" type="button">Close card</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <textarea class="copybox" id="copybox" readonly hidden aria-label="Message text to copy"></textarea>
+      <p class="status" id="cstatus" role="status" aria-live="polite"></p>
     </div>
   </section>
 </main>
@@ -107,12 +204,19 @@ footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-sc
 <footer>
   <div class="wrap">
     <span class="script">Just Because Flower</span>
-    Made for Bebecakes Cielo, because.
+    Made with love for Bebecakes Cielo, just because.
   </div>
 </footer>
 
 <script>
 (function(){
+  /* ===== Edit these to change the card message ===== */
+  var DEFAULT_GREETING='Dear Bebecakes,';
+  var DEFAULT_MESSAGE='No special day today. I just wanted you to know that you are on my mind, and that you make everything feel a little softer. Thank you for being you. These flowers are for you, Bebecakes, just because.';
+  var DEFAULT_CLOSING='Always yours,';
+  var DEFAULT_FROM='';
+  /* ================================================= */
+
   var $=function(s){return document.querySelector(s)};
 
   function leaf(x,y,r,s){return '<g transform="translate('+x+' '+y+') rotate('+r+') scale('+s+')"><path d="M0 0C10 -10 26 -10 36 0C26 10 10 10 0 0Z" fill="#6f9462"/><path d="M2 0H32" stroke="#4f7545" stroke-width="1.2"/></g>'}
@@ -123,11 +227,9 @@ footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-sc
   function gyp(x,y,s){var d=[[0,0],[-9,-8],[9,-9],[-4,-16],[6,-18],[-14,-18],[14,-19],[0,-26]];return '<g transform="translate('+x+' '+y+') scale('+s+')"><path d="M0 8V-20M0 -4L-9 -8M0 -4L9 -9" stroke="#7a9a6a" stroke-width="1"/>'+d.map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="2.7" fill="#fff" stroke="#e2c0ca" stroke-width=".5"/>'}).join('')+'</g>'}
   function euc(x,y,r,s){var o='';for(var i=0;i<5;i++)o+='<circle cx="'+(6+i*8)+'" cy="'+(i%2?-3:3)+'" r="'+(5.5-i*.5)+'" fill="#8fae95"/>';return '<g transform="translate('+x+' '+y+') rotate('+r+') scale('+s+')"><path d="M0 0H42" stroke="#6f9468" stroke-width="1.5"/>'+o+'</g>'}
 
-  /* wraps one flower in two groups: .bl pops open, .sp breathes */
   function fx(markup,i){return '<g class="bl" style="--i:'+i+'"><g class="sp" style="--i:'+i+'">'+markup+'</g></g>'}
 
   function bouquet(c){
-    var n=c.blooms.length;
     var stems=c.blooms.map(function(b){return '<path d="M'+b[1]+' '+(b[2]+10)+'Q'+((b[1]+120)/2)+' 172 120 200" fill="none" stroke="#5e8a52" stroke-width="3" stroke-linecap="round"/>'}).join('');
     var fill=(c.fill||[]).map(function(f,i){return fx(f[0]==='gyp'?gyp(f[1],f[2],f[3]):euc(f[1],f[2],f[3],f[4]),i)}).join('');
     var blooms=c.blooms.map(function(b,i){
@@ -146,6 +248,24 @@ footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-sc
       '<ellipse cx="136" cy="206" rx="16" ry="8" fill="'+c.ribbon+'" transform="rotate(18 136 206)"/>'+
       '<circle cx="120" cy="206" r="5.5" fill="'+c.ribbon+'" stroke="rgba(0,0,0,.18)" stroke-width="1"/>';
     return '<svg viewBox="0 0 240 284" aria-hidden="true" focusable="false"><g class="sway">'+stems+leaf(116,168,-158,1)+leaf(124,168,-22,1)+leaf(112,150,-135,.8)+leaf(128,150,-45,.8)+fill+blooms+'</g>'+wrap+'</svg>';
+  }
+
+  var PK=['#f29ab1','#d96a8b'], RD=['#d9345a','#8e1230'];
+  var BQ=[
+    {id:'blush',name:'Blush Whisper',desc:'Soft and sweet, like a quiet morning together.',
+     cfg:{paper:'#fbdde5',paper2:'#fff1f4',ribbon:'#c23f68',
+       blooms:[['rose',120,92,1.3,PK[0],PK[1]],['rose',78,112,1.05,'#f7b6c7','#e0809b'],['rose',162,112,1.05,'#f7b6c7','#e0809b'],['rose',98,60,.95,PK[0],PK[1]],['rose',146,62,.95,PK[0],PK[1]]],
+       fill:[['gyp',48,126,1],['gyp',192,124,1],['gyp',120,36,1],['gyp',66,72,.9],['gyp',176,74,.9]]}},
+    {id:'velvet',name:'Red Velvet Promise',desc:'For the kind of love that says it plainly.',
+     cfg:{paper:'#5a1428',paper2:'#7a1d38',ribbon:'#d4a85f',
+       blooms:[['rose',120,90,1.35,RD[0],RD[1]],['rose',80,106,1.1,RD[0],RD[1]],['rose',160,106,1.1,RD[0],RD[1]],['rose',100,56,1,RD[0],RD[1]],['rose',142,58,1,RD[0],RD[1]],['rose',62,130,.95,RD[0],RD[1]],['rose',178,130,.95,RD[0],RD[1]]],
+       fill:[['gyp',120,30,.9],['euc',24,118,-120,.9],['euc',216,118,-60,.9]]}},
+    {id:'sunday',name:'Soft Sunday',desc:'Bright and cheerful, for a day that smiles back.',
+     cfg:{paper:'#d9cdf0',paper2:'#efe8fa',ribbon:'#7a5fb0',
+       blooms:[['tulip',100,92,1.25,'#f08aa8','#d4557f'],['tulip',142,90,1.25,'#f6c860','#e9a53a'],['tulip',120,62,1.25,'#f08aa8','#d4557f'],['daisy',70,118,1],['daisy',172,118,1],['daisy',120,122,1.05],['daisy',88,48,.9],['daisy',154,46,.9]],
+       fill:[['gyp',44,100,.9],['gyp',196,98,.9]]}},
+    {id:'moonlit',name:'Moonlit Peony',desc:'Pale and dreamy, like a good night under the moon.',
+     cfg:{paper:'#ffffff',paper2:'#f3e9return '<svg viewBox="0 0 240 284" aria-hidden="true" focusable="false"><g class="sway">'+stems+leaf(116,168,-158,1)+leaf(124,168,-22,1)+leaf(112,150,-135,.8)+leaf(128,150,-45,.8)+fill+blooms+'</g>'+wrap+'</svg>';
   }
 
   var PK=['#f29ab1','#d96a8b'], RD=['#d9345a','#8e1230'];
