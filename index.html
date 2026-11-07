@@ -1,1 +1,271 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Just Because Flower</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@500&family=Figtree:wght@400;500;600&family=Pinyon+Script&display=swap">
+<style>
+:root{
+  --bg:#fbeef1; --surface:#fff6f8; --surface-2:#f7e0e6;
+  --ink:#3a0f1f; --muted:#76505c;
+  --rose:#b3305a; --on-rose:#ffffff; --accent-text:#a02a52; --gold:#80601f;
+  --petal:#f2a7b9; --line:rgba(122,26,61,.2); --stage:#f9e3e9;
+  --paper:#fffdf9; --paper-ink:#4a1a2a; --rule:rgba(179,48,90,.24);
+  --env-back:#8f2447; --env-front:#b5315b; --env-flap:#cf4b74; --env-flap-in:#7d1f3e;
+  --font-display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --font-script:'Pinyon Script','Snell Roundhand','Apple Chancery',cursive;
+  --font-hand:'Dancing Script','Segoe Script','Bradley Hand',cursive;
+  --font-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1c0811; --surface:#270c18; --surface-2:#351121;
+    --ink:#fbe6ec; --muted:#d0a6b3;
+    --rose:#e45c84; --on-rose:#2a0510; --accent-text:#f59ab5; --gold:#dcb67c;
+    --petal:#d9728f; --line:rgba(251,190,205,.2); --stage:#3b1527;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--font-body)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent-text)}
+:focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font:600 .95rem/1 var(--font-body);padding:.9rem 1.5rem;border-radius:999px;border:1.5px solid var(--rose);background:var(--rose);color:var(--on-rose);cursor:pointer;text-decoration:none;transition:transform .2s,background-color .2s,color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--accent-text);border-color:var(--accent-text)}
+.btn.small{padding:.65rem 1.05rem;font-size:.85rem}
+.btn[aria-pressed="true"]{background:var(--rose);color:var(--on-rose);border-color:var(--rose)}
+.linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--accent-text);text-decoration:underline;cursor:pointer}
+
+.top{display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;align-items:baseline;padding-block:1.4rem}
+.brand{font:600 1.05rem/1 var(--font-display);letter-spacing:.28em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.top nav{display:flex;gap:1.5rem}
+.top nav a{font-size:.9rem;text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--accent-text)}
+
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 78% 30%,var(--surface-2),transparent 62%),var(--bg)}
+.petals{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.petal{position:absolute;top:-28px;background:var(--petal);border-radius:100% 0 100% 0;animation:fall linear infinite}
+@keyframes fall{from{transform:translate3d(0,0,0) rotate(0)}to{transform:translate3d(var(--dx),110vh,0) rotate(540deg)}}
+@media (prefers-reduced-motion:reduce){.petals{display:none}}
+.hero .wrap{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:2rem 3rem;align-items:center;padding-block:1rem 4.5rem}
+.eyebrow{margin:0 0 1rem;font:600 .78rem/1 var(--font-body);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+h1{margin:0 0 1.4rem;font-weight:400}
+h1 .script{display:block;font:400 clamp(3.7rem,11vw,7.4rem)/.95 var(--font-script);color:var(--accent-text)}
+h1 .shop{display:block;margin-top:.7rem;padding-left:.35rem;font:500 clamp(1rem,2.6vw,1.3rem)/1 var(--font-display);letter-spacing:.7em;text-transform:uppercase;color:var(--gold)}
+.lede{max-width:34rem;margin:0 0 1.2rem;font:400 clamp(1.25rem,2.6vw,1.55rem)/1.45 var(--font-display);color:var(--ink)}
+.for{margin:0 0 2rem;color:var(--muted)}
+.for em{font:400 1.7rem/1 var(--font-script);font-style:normal;color:var(--accent-text);padding-left:.2rem}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem}
+.hero-art{margin:0;justify-self:center;width:100%;max-width:420px;background:var(--stage);border-radius:50% 50% 14px 14px / 32% 32% 14px 14px;padding:12% 10% 3%;box-shadow:0 30px 50px -30px rgba(90,15,40,.55)}
+.hero-art svg{display:block;width:100%;height:auto}
+
+.band{padding-block:5rem}
+.band.flowers{background:var(--surface)}
+.band.letter{background:linear-gradient(var(--bg),var(--surface-2))}
+h2{margin:0 0 .8rem;font:500 clamp(2.1rem,5vw,3.2rem)/1.1 var(--font-display);text-wrap:balance}
+h2 em{font-family:var(--font-script);font-style:normal;font-weight:400;color:var(--accent-text);font-size:1.15em}
+.sec-intro{max-width:36rem;margin:0 0 3rem;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:2.4rem 1.8rem}
+.card{display:flex;flex-direction:column;min-width:0}
+.stage{background:var(--stage);border-radius:50% 50% 12px 12px / 30% 30% 12px 12px;padding:13% 8% 2%;margin-bottom:1.1rem}
+.stage svg{display:block;width:100%;height:auto}
+.card h3{margin:0 0 .3rem;font:500 1.7rem/1.1 var(--font-display)}
+.desc{margin:0 0 1rem;color:var(--muted);font-size:.95rem;flex:1}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.price{font:600 1.25rem/1 var(--font-display);color:var(--gold);letter-spacing:.04em}
+
+.letter-head{text-align:center;max-width:36rem;margin:0 auto 2.6rem}
+.letter-head .sec-intro{margin:0 auto}
+.env-stage{display:flex;flex-direction:column;align-items:center;gap:1.6rem;padding-top:7rem}
+.env{position:relative;width:min(100%,440px);aspect-ratio:3/2;perspective:1200px}
+.env>*{position:absolute}
+.env-back{inset:0;background:var(--env-back);border-radius:6px;box-shadow:0 28px 40px -20px rgba(60,10,30,.6)}
+.mini{left:7%;right:7%;bottom:8%;height:80%;z-index:2;background:var(--paper);border-radius:3px;display:grid;justify-items:center;align-content:start;padding-top:9%;color:var(--paper-ink);font:500 1.3rem/1.2 var(--font-hand);transition:transform .9s cubic-bezier(.3,.7,.2,1) .35s;box-shadow:0 -2px 10px rgba(60,10,30,.12)}
+.mini span{display:block;width:70%;height:1px;background:var(--rule);margin-top:.8rem}
+.mini span:first-child{margin-top:0}
+.env[data-state="open"] .mini{transform:translateY(-58%)}
+.env-front{inset:0;z-index:3;border-radius:6px;background:linear-gradient(160deg,var(--env-front),#a22a52);clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%)}
+.flap{left:0;top:0;width:100%;height:56%;z-index:4;background:var(--env-flap);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0;transition:transform .8s cubic-bezier(.5,0,.2,1),background-color .3s .3s,z-index 0s .4s}
+.env[data-state="open"] .flap{transform:rotateX(180deg);background:var(--env-flap-in);z-index:1}
+.addr{left:0;right:0;bottom:8%;z-index:5;text-align:center;pointer-events:none;color:#fff3f6;font:400 clamp(1.6rem,6vw,2.3rem)/1 var(--font-script)}
+.addr small{display:block;margin-bottom:.35rem;font:600 .68rem/1 var(--font-body);letter-spacing:.3em;text-transform:uppercase;opacity:.85}
+.seal{left:50%;top:56%;z-index:6;width:15%;min-width:44px;aspect-ratio:1;transform:translate(-50%,-50%);border:0;padding:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#c42b52,#6e0f2c 72%);box-shadow:0 4px 10px rgba(40,5,20,.5),inset 0 0 0 3px rgba(255,255,255,.08);transition:opacity .3s,transform .4s,visibility 0s}
+.seal svg{width:46%;height:46%;fill:#f8cfda}
+.env[data-state="open"] .seal{opacity:0;visibility:hidden;transform:translate(-50%,-50%) scale(.6) rotate(24deg);transition:opacity .3s,transform .4s,visibility 0s .4s}
+.hint{margin:0;color:var(--muted);font-size:.9rem;text-align:center;min-height:1.4em}
+
+.paper-wrap{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .7s ease,opacity .5s ease,visibility 0s .7s;max-width:640px;margin:0 auto}
+.paper-wrap.is-open{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .7s ease,opacity .5s ease .1s,visibility 0s}
+.paper-clip{min-height:0;overflow:hidden;padding:0 14px 44px}
+.paper{position:relative;margin-top:2.2rem;background:var(--paper);color:var(--paper-ink);border-radius:4px;padding:2.2rem clamp(1.2rem,5vw,2.8rem) 2rem;box-shadow:0 30px 50px -28px rgba(60,10,30,.65),0 0 0 1px rgba(179,48,90,.12)}
+.paper::before{content:"";position:absolute;top:0;bottom:0;left:clamp(.6rem,2.4vw,1.5rem);width:1px;background:rgba(179,48,90,.3)}
+.stamp{position:absolute;top:1.1rem;right:1.2rem;width:54px;height:64px;border:2px dashed rgba(179,48,90,.5);border-radius:3px;display:grid;place-items:center;transform:rotate(4deg)}
+.stamp svg{width:46%;fill:#b3305a}
+.paper input,.paper textarea{font-family:var(--font-hand);color:var(--paper-ink);background:transparent;border:0;border-radius:0;width:100%;outline-offset:4px}
+.paper input{font-size:1.5rem;line-height:2.3rem;border-bottom:1px dashed var(--rule);padding:0}
+.paper .sal{padding-right:5rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:1.1rem 0 .6rem}
+.chips-label{flex-basis:100%;margin:0;font:600 .72rem/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:#8b5565}
+.chip{font:500 .82rem/1 var(--font-body);padding:.5rem .8rem;border-radius:999px;border:1px solid rgba(179,48,90,.4);background:transparent;color:#8f2447;cursor:pointer}
+.chip:hover{background:rgba(179,48,90,.1)}
+.letter-body{--lh:2.3rem;display:block;min-height:calc(var(--lh)*8);resize:vertical;padding:0;font-size:1.4rem;line-height:var(--lh);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--lh) - 1px),var(--rule) calc(var(--lh) - 1px),var(--rule) var(--lh));background-attachment:local}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:.2rem 1.2rem;margin-top:1.4rem}
+.sign label{font:600 .68rem/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:#8b5565}
+.ps{margin:1.1rem 0 0;font:500 1.25rem/1.5 var(--font-hand)}
+.ps b{font-weight:500;color:#a02a52}
+.ps .linkbtn{font:500 .8rem var(--font-body);color:#8f2447}
+.paper-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem;align-items:center}
+.paper-actions .btn.ghost{color:#8f2447;border-color:#8f2447}
+.count{margin-left:auto;font-size:.8rem;color:#8b5565}
+
+.sealed{max-width:30rem;margin:0 auto;text-align:center}
+.sealed h3{margin:0 0 .4rem;font:400 clamp(2.2rem,7vw,3.2rem)/1.1 var(--font-script);color:var(--accent-text)}
+.sealed p{margin:0 0 1.2rem;color:var(--muted)}
+.sealed .row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+.copybox{display:block;width:100%;margin-top:1.2rem;min-height:9rem;padding:.9rem;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:400 .95rem/1.5 var(--font-body)}
+.status{margin:1rem 0 0;min-height:1.4em;text-align:center;font-size:.9rem;color:var(--accent-text)}
+
+footer{padding-block:2.6rem;border-top:1px solid var(--line);background:var(--bg);text-align:center;color:var(--muted);font-size:.9rem}
+footer .script{display:block;margin-bottom:.2rem;font:400 2rem/1.1 var(--font-script);color:var(--accent-text)}
+
+@media (max-width:760px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);padding-bottom:3.5rem}
+  .hero-art{max-width:340px}
+  .band{padding-block:3.6rem}
+  .env-stage{padding-top:5.5rem}
+  .sign{grid-template-columns:minmax(0,1fr)}
+  .sign>div{margin-bottom:.8rem}
+  .count{flex-basis:100%;margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .mini,.flap,.seal,.paper-wrap,.btn{transition-duration:.01s;transition-delay:0s}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="petals" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#top">Just Because Flower</a>
+      <nav aria-label="Page sections"><a href="#bouquets">Bouquets</a><a href="#letter">Write a letter</a></nav>
+    </div>
+    <div class="hero-grid" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Flowers for no reason</p>
+        <h1><span class="script">Just Because</span><span class="shop">Flower</span></h1>
+        <p class="lede">Flowers for no birthday, no anniversary, no reason at all. Pick a bouquet, write a few words, and seal it with a kiss.</p>
+        <p class="for">Made with all my love for <em>Bebecakes Cielo</em></p>
+        <div class="cta">
+          <a class="btn" href="#bouquets">Choose a bouquet</a>
+          <a class="btn ghost" href="#letter">Write a letter</a>
+        </div>
+      </div>
+      <figure class="hero-art" id="heroArt" role="img" aria-label="A hand-tied bouquet of peonies, roses, tulips and daisies wrapped in soft paper"></figure>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="band flowers" id="bouquets" aria-labelledby="bq-title">
+    <div class="wrap">
+      <h2 id="bq-title">Flowers for <em>Bebecakes</em></h2>
+      <p class="sec-intro">Four bouquets for the days that need one. Add a bouquet to your letter and it appears in the postscript.</p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="band letter" id="letter" aria-labelledby="lt-title">
+    <div class="wrap">
+      <div class="letter-head">
+        <h2 id="lt-title">A letter for <em>Bebecakes Cielo</em></h2>
+        <p class="sec-intro">Break the wax seal, write whatever is on your heart, then close the envelope. Copy the letter when it is ready and send it your way.</p>
+      </div>
+
+      <div class="env-stage">
+        <div class="env" id="env" data-state="closed">
+          <div class="env-back"></div>
+          <div class="mini" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="env-front"></div>
+          <div class="flap"></div>
+          <div class="addr"><small>To</small>Bebecakes Cielo</div>
+          <button class="seal" id="seal" type="button" aria-label="Break the wax seal and open the envelope">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.8 8 3 4.5 6.4 4.5c2 0 3.5 1.1 4.3 2.5l1.3 2 1.3-2c.8-1.4 2.3-2.5 4.3-2.5 3.4 0 5.6 3.5 4 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          </button>
+        </div>
+        <button class="btn" id="openBtn" type="button">Open the envelope</button>
+        <p class="hint" id="hint">Tap the wax seal to open.</p>
+      </div>
+
+      <div class="paper-wrap" id="paperWrap" inert>
+        <div class="paper-clip">
+          <form class="paper" id="paper" autocomplete="off">
+            <div class="stamp" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.3C.8 8 3 4.5 6.4 4.5c2 0 3.5 1.1 4.3 2.5l1.3 2 1.3-2c.8-1.4 2.3-2.5 4.3-2.5 3.4 0 5.6 3.5 4 7.2C19.5 16.4 12 21 12 21z"/></svg></div>
+            <label for="sal" style="position:absolute;left:-9999px">Greeting</label>
+            <input class="sal" id="sal" type="text" value="My dearest Bebecakes," maxlength="60">
+            <div class="chips" role="group" aria-label="Need a first line?">
+              <p class="chips-label">Need a first line?</p>
+              <button class="chip" type="button">Just because I thought of you</button>
+              <button class="chip" type="button">My favorite thing about you is</button>
+              <button class="chip" type="button">Today I am grateful for</button>
+              <button class="chip" type="button">I miss you when</button>
+              <button class="chip" type="button">I promise to</button>
+            </div>
+            <label for="body" style="position:absolute;left:-9999px">Your letter</label>
+            <textarea class="letter-body" id="body" rows="8" placeholder="Write something sweet..." maxlength="1500"></textarea>
+            <div class="sign">
+              <div><label for="close">Closing</label><input id="close" type="text" value="Forever yours," maxlength="40"></div>
+              <div><label for="from">Your name</label><input id="from" type="text" placeholder="Write your name" maxlength="40"></div>
+            </div>
+            <p class="ps" id="ps" hidden>P.S. Flowers picked for you: <b id="psName"></b> <button class="linkbtn" id="psClear" type="button">remove</button></p>
+            <div class="paper-actions">
+              <button class="btn" id="sealBtn" type="button">Seal the envelope</button>
+              <button class="btn ghost" id="copyBtn" type="button">Copy letter</button>
+              <span class="count" id="count">0 / 1500</span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="sealed" id="sealed" role="status" hidden>
+        <h3>Sealed with love</h3>
+        <p>Your letter is tucked inside. Copy it and send it to Bebecakes Cielo however you like.</p>
+        <div class="row">
+          <button class="btn" id="copyBtn2" type="button">Copy letter</button>
+          <button class="btn ghost" id="reopenBtn" type="button">Open again</button>
+        </div>
+        <textarea class="copybox" id="copybox" readonly hidden aria-label="Letter text to copy"></textarea>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="script">Just Because Flower</span>
+    Made for Bebecakes Cielo, because.
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+
+  function leaf(x,y,r,s){return '<g transform="translate('+x+' '+y+') rotate('+r+') scale('+s+')"><path d="M0 0C10 -10 26 -10 36 0C26 10 10 10 0 0Z" fill="#6f9462"/><path d="M2 0H32" stroke="#4f7545" stroke-width="1.2"/></g>'}
+  function rose(x,y,s,a,b){return '<g transform="translate('+x+' '+y+') scale('+s+')"><circle r="23" fill="'+b+'"/><path d="M-19 -4Q-21 -23 0 -23Q21 -23 19 -4Q15 17 0 19Q-15 17-19 -4Z" fill="'+a+'"/><circle r="13" fill="'+b+'" opacity=".85"/><path d="M-10 -2Q-11 -13 0 -13Q11 -13 10 -2Q8 10 0 11Q-8 10-10 -2Z" fill="'+a+'"/><path d="M-5 0Q-5 -7 1 -7Q7 -7 6 0Q4 6 -1 6" fill="none" stroke="'+b+'" stroke-width="1.8" stroke-linecap="round"/></g>'}
+  function peony(x,y,s,a,b){var o='',i;for(i=0;i<8;i++)o+='<ellipse rx="12" ry="16" cy="-13" fill="'+a+'" stroke="'+b+'" stroke-width=".8" transform="rotate('+(i*45)+')"/>';for(i=0;i<6;i++)o+='<ellipse rx="8.5" ry="11" cy="-8" fill="'+a+'" stroke="'+b+'" stroke-width=".8" transform="rotate('+(i*60+20)+')"/>';return '<g transform="translate('+x+' '+y+') scale('+s+')">'+o+'<circle r="5" fill="'+b+'"/></g>'}
+  function tulip(x,y,s,a,b){return '<g transform="translate('+x+' '+y+') scale('+s+')"><path d="M-14 0C-16 -22 -6 -30 0 -34C6 -30 16 -22 14 0C8 6 -8 6 -14 0Z" fill="'+a+'"/><path d="M-4 3C-8 -16 -2 -28 0 -34C2 -28 8 -16 4 3Z" fill="'+b+'"/></g>'}
+  function daisy(x,y,s){var p='';for(var i=0;i<12;i++)p+='<ellipse rx="3.4" ry="11" cy="-11" fill="#fffaf5" stroke="#e6cbd3" stroke-width=".6" transform="rotate('+(i*30)+')"/>';return '<g transform="translate('+x+' '+y+') scale('+s+')">'+p+'<circle r="6" fill="#f2b84b"/></g>'}
+  function gyp(x,y,s){var d=[[0,0],[-9,-8],[9,-9],[-4,-16],[6,-18],[-14,-18],[14,-19],[0,-26]];return '<g transform="translate('+x+' '+y+') scale('+s+')"><path d="M0 8V-20M0 -4L-9 -8M0 -4L9 -9" stroke="#7a9a6a" stroke-width="1"/>'+d.map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="2.7" fill="#fff" stroke="#e2c0ca" stroke-width=".5"/>'}).join('')+'</g>'}
+  function euc(x,y,r,s){var o='';for(var i=0;i<5;i++)o+='<circle cx="'+(6+i*8)+'" cy="'+(i%2?-3:3)+'" r="'+(5.5-i*.5)+'" fill="#8fae95"/>';return '<g transform="translate('+x+' '+y+') rotate('+r+') scale('+s+')"><path d="M0 0H42" stroke="#6f9468" stroke-wid
